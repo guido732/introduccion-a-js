@@ -4,3 +4,8 @@
 // vas a crear un botón de acción que una vez que lo apretás, va a
 // mostrar toda la información junta en un campo de texto
 // Y va a cambiar el <h1> para decir "Bienvenido, nombreDeUsuario"!
+
+const usuarioPrimerNombre = document.querySelector("#usuarioPrimerNombre").value;
+const usuarioSegundoNombre = document.querySelector("#usuarioSegundoNombre").value;
+const usuarioApellido = document.querySelector("#usuarioApellido").value;
+const usuarioEdad = document.querySelector("#usuarioEdad").value;
