@@ -23,13 +23,13 @@
 // Forzar disable para cuando se hace F5 o CTRL+R en navegador
 deshabilitarInputsEtapa2();
 limpiarInputs();
-document.querySelector("#cantidadClasesTotal").value = "";
-let horasTotales = 0;
-let minutosTotales = 0;
-let segundosTotales = 0;
-let cantidadClases = 0;
-let claseCounter = 1;
+let horasTotales;
+let minutosTotales;
+let segundosTotales;
+let cantidadClases;
+let claseCounter;
 reiniciarValoresCounters();
+
 document.querySelector("#empezar").onclick = function(e) {
 	// Evitar que el boton empezar envíe el form
 	e.preventDefault();
@@ -41,8 +41,10 @@ document.querySelector("#empezar").onclick = function(e) {
 	if (cantidadClases === "") {
 		cantidadClases = 0;
 	}
-	// Deshabilitación de input + boton de la 1ra etapa
+	// Deshabilitar input + boton de la 1ra etapa
+	// Limpiar valopres
 	deshabilitarInputsEtapa1();
+	limpiarInputs();
 
 	// Habilitación de inputs correspondientes para la 2da etapa
 	habilitarInputsEtapa2();
@@ -92,28 +94,32 @@ function limpiarInputs() {
 	document.querySelector("#duracionHoras").value = "";
 	document.querySelector("#duracionMinutos").value = "";
 	document.querySelector("#duracionSegundos").value = "";
+	document.querySelector("#cantidadClasesTotal").value = "";
 }
 function deshabilitarInputsEtapa1() {
-	document.querySelector("#empezar").disabled = true;
-	document.querySelector("#cantidadClasesTotal").disabled = true;
+	// document.querySelector("#empezar").disabled = true;
+	// document.querySelector("#cantidadClasesTotal").disabled = true;
+	document.querySelector(".inputs-etapa-1").hidden = true;
 }
 function deshabilitarInputsEtapa2() {
-	document.querySelector("#duracionHoras").disabled = true;
-	document.querySelector("#duracionMinutos").disabled = true;
-	document.querySelector("#duracionSegundos").disabled = true;
-	document.querySelector("#proximaClase").disabled = true;
+	// document.querySelector("#duracionHoras").disabled = true;
+	// document.querySelector("#duracionMinutos").disabled = true;
+	// document.querySelector("#duracionSegundos").disabled = true;
+	// document.querySelector("#proximaClase").disabled = true;
+
+	document.querySelector(".inputs-etapa-2").hidden = true;
 }
 function habilitarInputsEtapa1() {
-	document.querySelector("#empezar").disabled = false;
-	document.querySelector("#cantidadClasesTotal").disabled = false;
+	// document.querySelector("#empezar").disabled = false;
+	// document.querySelector("#cantidadClasesTotal").disabled = false;
+	document.querySelector(".inputs-etapa-1").hidden = false;
 }
 function habilitarInputsEtapa2() {
-	//  No me funciona ésto para no tener que escribir las 4 líneas de abajo
-	// document.querySelectorAll(".input-clases").disabled = false;
-	document.querySelector("#duracionHoras").disabled = false;
-	document.querySelector("#duracionMinutos").disabled = false;
-	document.querySelector("#duracionSegundos").disabled = false;
-	document.querySelector("#proximaClase").disabled = false;
+	// document.querySelector("#duracionHoras").disabled = false;
+	// document.querySelector("#duracionMinutos").disabled = false;
+	// document.querySelector("#duracionSegundos").disabled = false;
+	// document.querySelector("#proximaClase").disabled = false;
+	document.querySelector(".inputs-etapa-2").hidden = false;
 }
 function reiniciarValoresCounters() {
 	horasTotales = 0;
