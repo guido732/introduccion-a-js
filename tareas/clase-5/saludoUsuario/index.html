@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Saludo Usuario</title>
+		<link rel="stylesheet" href="style-saludo-usuario.css" />
+	</head>
+	<body>
+		<div class="container">
+			<form action="">
+				<label for="usuarioPrimerNombre">Ingresá tu primer nombre</label>
+				<input type="text" name="usuarioPrimerNombre" id="usuarioPrimerNombre" placeholder="Nombre" />
+				<label for="usuarioSegundoNombre">Ingresá tu segundo nombre</label>
+				<input type="text" name="usuarioSegundoNombre" id="usuarioSegundoNombre" placeholder="Segundo nombre" />
+				<label for="usuarioApellido">Ingresá tu apellido</label>
+				<input type="text" name="usuarioApellido" id="usuarioApellido" placeholder="Apellido" />
+				<label for="usuarioEdad">Ingresá tu edad</label>
+				<input type="number" name="usuarioEdad" id="usuarioEdad" placeholder="Edad" />
+				<h1 id="mensajeBienvenida">Bienvenido!</h1>
+				<button type="submit" class="btn-entrar">Entrar</button>
+				<textarea
+					name="resultado"
+					id="resultado"
+					cols="30"
+					rows="0"
+					placeholder="Resultado"
+					disabled
+				></textarea>
+			</form>
+		</div>
+		<script src="./saludoUsuario.js"></script>
+	</body>
+</html>
