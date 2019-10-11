@@ -63,10 +63,7 @@ botonEmpezar.onclick = function(e) {
 	cantidadClases = document.querySelector("#cantidadClasesTotal").value;
 
 	// Si se deja el input vacío se lo toma por default como 0;
-	// ! Cambiar a ternario
-	if (cantidadClases === "") {
-		cantidadClases = 0;
-	}
+	cantidadClases === "" ? (cantidadClases = 0) : null;
 
 	// Deshabilitación de input + boton de la 1ra etapa
 	deshabilitarInputsEtapa1();
@@ -80,7 +77,7 @@ botonEmpezar.onclick = function(e) {
 function sumaValoresClases() {
 	if (cantidadClases === 0) {
 		deshabilitarInputsEtapa2();
-		habilitarInputsEtapa1();
+		deshabilitarInputsEtapa1();
 		textoResultado.innerHTML = "0 horas 0 minutos 0 segundos";
 		botonReset.hidden = false;
 		botonReset.onclick = function(e) {
