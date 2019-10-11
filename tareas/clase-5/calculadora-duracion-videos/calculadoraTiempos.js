@@ -97,24 +97,29 @@ function limpiarInputs() {
 	document.querySelector("#cantidadClasesTotal").value = "";
 }
 function deshabilitarInputsEtapa1() {
-	document.querySelector("#empezar").disabled = true;
-	document.querySelector("#cantidadClasesTotal").disabled = true;
+	// document.querySelector("#empezar").disabled = true;
+	// document.querySelector("#cantidadClasesTotal").disabled = true;
+	document.querySelector(".inputs-etapa-1").hidden = true;
 }
 function deshabilitarInputsEtapa2() {
-	document.querySelector("#duracionHoras").disabled = true;
-	document.querySelector("#duracionMinutos").disabled = true;
-	document.querySelector("#duracionSegundos").disabled = true;
-	document.querySelector("#proximaClase").disabled = true;
+	// document.querySelector("#duracionHoras").disabled = true;
+	// document.querySelector("#duracionMinutos").disabled = true;
+	// document.querySelector("#duracionSegundos").disabled = true;
+	// document.querySelector("#proximaClase").disabled = true;
+
+	document.querySelector(".inputs-etapa-2").hidden = true;
 }
 function habilitarInputsEtapa1() {
-	document.querySelector("#empezar").disabled = false;
-	document.querySelector("#cantidadClasesTotal").disabled = false;
+	// document.querySelector("#empezar").disabled = false;
+	// document.querySelector("#cantidadClasesTotal").disabled = false;
+	document.querySelector(".inputs-etapa-1").hidden = false;
 }
 function habilitarInputsEtapa2() {
-	document.querySelector("#duracionHoras").disabled = false;
-	document.querySelector("#duracionMinutos").disabled = false;
-	document.querySelector("#duracionSegundos").disabled = false;
-	document.querySelector("#proximaClase").disabled = false;
+	// document.querySelector("#duracionHoras").disabled = false;
+	// document.querySelector("#duracionMinutos").disabled = false;
+	// document.querySelector("#duracionSegundos").disabled = false;
+	// document.querySelector("#proximaClase").disabled = false;
+	document.querySelector(".inputs-etapa-2").hidden = false;
 }
 function reiniciarValoresCounters() {
 	horasTotales = 0;
