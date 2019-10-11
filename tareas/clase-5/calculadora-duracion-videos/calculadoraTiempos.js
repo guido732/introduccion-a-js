@@ -6,29 +6,15 @@
 // al apretar el botón "Calcular tiempo total", debe mostrar en un
 // <strong> pre-creado el tiempo total de los videos.
 
-/* 
-1- ingresar clases totales a calcular
-2- hacer clic en empezar
-3- deshabilitar input + botón
-4- habilitar otros inputs + botón de próxima clase + claseCounter++
-5- completar + hacer clic en proxima clase
-6- alojar valores, limpiar formularios y repetir
-7- al llegar al valor de clases final salir del loop iterativo
-8- deshabilitar todos los inputs
-9- hacer cálculos y mostrar valores en <strong>
-10- botón de empezar de nuevo
-11- reiniciar (limpiar, inhabilitar y habilitar valores correspondientes)
-*/
-
 // Forzar disable para cuando se hace F5 o CTRL+R en navegador
 deshabilitarInputsEtapa2();
 limpiarInputs();
 document.querySelector("#cantidadClasesTotal").value = "";
-let horasTotales = 0;
-let minutosTotales = 0;
-let segundosTotales = 0;
-let cantidadClases = 0;
-let claseCounter = 1;
+let horasTotales;
+let minutosTotales;
+let segundosTotales;
+let cantidadClases;
+let claseCounter;
 reiniciarValoresCounters();
 document.querySelector("#empezar").onclick = function(e) {
 	// Evitar que el boton empezar envíe el form
@@ -43,6 +29,7 @@ document.querySelector("#empezar").onclick = function(e) {
 	}
 	// Deshabilitación de input + boton de la 1ra etapa
 	deshabilitarInputsEtapa1();
+	limpiarInputs();
 
 	// Habilitación de inputs correspondientes para la 2da etapa
 	habilitarInputsEtapa2();
@@ -93,6 +80,7 @@ function limpiarInputs() {
 	document.querySelector("#duracionHoras").value = "";
 	document.querySelector("#duracionMinutos").value = "";
 	document.querySelector("#duracionSegundos").value = "";
+	document.querySelector("#cantidadClasesTotal").value = "";
 }
 function deshabilitarInputsEtapa1() {
 	document.querySelector("#empezar").disabled = true;
@@ -130,4 +118,5 @@ function resetProgram() {
 	document.querySelector("#boton-reset").hidden = true;
 	habilitarInputsEtapa1();
 	reiniciarValoresCounters();
+	limpiarInputs();
 }
