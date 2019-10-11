@@ -7,26 +7,67 @@
 // <strong> pre-creado el tiempo total de los videos.
 
 // Forzar disable para cuando se hace F5 o CTRL+R en navegador
-deshabilitarInputsEtapa2();
-limpiarInputs();
-document.querySelector("#cantidadClasesTotal").value = "";
+
+/* 
+<form action="">
+				<h1>Calculadora de duración de videos r/Argentina-Programa</h1>
+				<div class="cantidad-container">
+					<label for="cantidadClases">Ingresá la cantidad de clases a calcular</label>
+					<input type="number" name="cantidadClases" id="cantidadClasesTotal" required />
+					<button type="submit" id="empezar" class="btn-calc">Empezar</button>
+				</div>
+				<p id="claseCounter"></p>
+				<label for="duracionHoras">Ingresá la cantidad de horas</label>
+				<input type="number" name="duracionHoras" id="duracionHoras" class="input-clases" disabled />
+				<label for="duracionMinutos">Ingresá la cantidad de minutos</label>
+				<input type="number" name="duracionMinutos" id="duracionMinutos" class="input-clases" disabled />
+				<label for="duracionSegundos">Ingresá la cantidad de segundos</label>
+				<input type="number" name="duracionSegundos" id="duracionSegundos" class="input-clases" disabled />
+				<button type="submit" id="proximaClase" class="btn-calc input-clases" disabled>Proxima Clase</button>
+				<button type="reset" id="boton-reset" class="btn-calc" hidden>
+					Reiniciar
+				</button>
+				<strong id="resultado"></strong>
+			</form>
+
+*/
+// Counters
 let horasTotales;
 let minutosTotales;
 let segundosTotales;
 let cantidadClases;
 let claseCounter;
+
+// Inputs y botones
+let textoResultado = document.querySelector("#resultado");
+let displayClaseCounter = document.querySelector("#claseCounter");
+let inputHoras = document.querySelector("#duracionHoras");
+let inputMinutos = document.querySelector("#duracionMinutos");
+let inputSegundos = document.querySelector("#duracionSegundos");
+
+const botonReset = document.querySelector("#boton-reset");
+const botonProximaClase = document.querySelector("#proximaClase");
+const botonEmpezar = document.querySelector("#empezar");
+
+// Limpiadores / Inicializadores
+deshabilitarInputsEtapa2();
+limpiarInputs();
 reiniciarValoresCounters();
-document.querySelector("#empezar").onclick = function(e) {
+
+// Función principal
+botonEmpezar.onclick = function(e) {
 	// Evitar que el boton empezar envíe el form
 	e.preventDefault();
 
 	// Tomar el valor del input y guardarlo en cantidad clases
 	cantidadClases = document.querySelector("#cantidadClasesTotal").value;
+
 	// Si se deja el input vacío se lo toma por default como 0;
 	// ! Cambiar a ternario
 	if (cantidadClases === "") {
 		cantidadClases = 0;
 	}
+
 	// Deshabilitación de input + boton de la 1ra etapa
 	deshabilitarInputsEtapa1();
 	limpiarInputs();
@@ -40,28 +81,25 @@ function sumaValoresClases() {
 	if (cantidadClases === 0) {
 		deshabilitarInputsEtapa2();
 		habilitarInputsEtapa1();
-		document.querySelector("#resultado").innerHTML = "0 horas 0 minutos 0 segundos";
-		document.querySelector("#boton-reset").hidden = false;
-		document.querySelector("#boton-reset").onclick = function(e) {
+		textoResultado.innerHTML = "0 horas 0 minutos 0 segundos";
+		botonReset.hidden = false;
+		botonReset.onclick = function(e) {
 			e.preventDefault();
 			resetProgram();
 		};
 	} else if (claseCounter > cantidadClases) {
 		limpiarInputs();
-		document.querySelector(
-			"#resultado"
-		).innerHTML = `Total: ${horasTotales} horas, ${minutosTotales} minutos y ${segundosTotales} segundos`;
-		document.querySelector("#boton-reset").hidden = false;
+		textoResultado.innerHTML = `Total: ${horasTotales} horas, ${minutosTotales} minutos y ${segundosTotales} segundos`;
+		botonReset.hidden = false;
 		deshabilitarInputsEtapa1();
 		deshabilitarInputsEtapa2();
-		document.querySelector("#boton-reset").onclick = function(e) {
+		botonReset.onclick = function(e) {
 			e.preventDefault();
 			resetProgram();
 		};
 	} else {
-		document.querySelector("#claseCounter").innerHTML = `Clase ${claseCounter} de ${cantidadClases}`;
-		document.querySelector("#proximaClase").onclick = function(e) {
-			document.querySelector("#claseCounter").innerHTML = `Clase ${claseCounter} de ${cantidadClases}`;
+		displayClaseCounter.innerHTML = `Clase ${claseCounter} de ${cantidadClases}`;
+		botonProximaClase.onclick = function(e) {
 			e.preventDefault();
 			sumarValoresInputs();
 			limpiarInputs();
@@ -72,37 +110,35 @@ function sumaValoresClases() {
 }
 
 function sumarValoresInputs() {
-	horasTotales += Number(document.querySelector("#duracionHoras").value);
-	minutosTotales += Number(document.querySelector("#duracionMinutos").value);
-	segundosTotales += Number(document.querySelector("#duracionSegundos").value);
+	horasTotales += Number(inputHoras.value);
+	minutosTotales += Number(inputMinutos.value);
+	segundosTotales += Number(inputSegundos.value);
 }
 function limpiarInputs() {
-	document.querySelector("#duracionHoras").value = "";
-	document.querySelector("#duracionMinutos").value = "";
-	document.querySelector("#duracionSegundos").value = "";
+	inputHoras.value = "";
+	inputMinutos.value = "";
+	inputSegundos.value = "";
 	document.querySelector("#cantidadClasesTotal").value = "";
 }
 function deshabilitarInputsEtapa1() {
-	document.querySelector("#empezar").disabled = true;
+	botonEmpezar.disabled = true;
 	document.querySelector("#cantidadClasesTotal").disabled = true;
 }
 function deshabilitarInputsEtapa2() {
-	document.querySelector("#duracionHoras").disabled = true;
-	document.querySelector("#duracionMinutos").disabled = true;
-	document.querySelector("#duracionSegundos").disabled = true;
-	document.querySelector("#proximaClase").disabled = true;
+	inputHoras.disabled = true;
+	inputMinutos.disabled = true;
+	inputSegundos.disabled = true;
+	botonProximaClase.disabled = true;
 }
 function habilitarInputsEtapa1() {
-	document.querySelector("#empezar").disabled = false;
+	botonEmpezar.disabled = false;
 	document.querySelector("#cantidadClasesTotal").disabled = false;
 }
 function habilitarInputsEtapa2() {
-	//  No me funciona ésto para no tener que escribir las 4 líneas de abajo
-	// document.querySelectorAll(".input-clases").disabled = false;
-	document.querySelector("#duracionHoras").disabled = false;
-	document.querySelector("#duracionMinutos").disabled = false;
-	document.querySelector("#duracionSegundos").disabled = false;
-	document.querySelector("#proximaClase").disabled = false;
+	inputHoras.disabled = false;
+	inputMinutos.disabled = false;
+	inputSegundos.disabled = false;
+	botonProximaClase.disabled = false;
 }
 function reiniciarValoresCounters() {
 	horasTotales = 0;
@@ -111,11 +147,10 @@ function reiniciarValoresCounters() {
 	cantidadClases = 0;
 	claseCounter = 1;
 }
-
 function resetProgram() {
-	document.querySelector("#resultado").innerHTML = "";
-	document.querySelector("#claseCounter").innerHTML = "";
-	document.querySelector("#boton-reset").hidden = true;
+	textoResultado.innerHTML = "";
+	displayClaseCounter.innerHTML = "";
+	botonReset.hidden = true;
 	habilitarInputsEtapa1();
 	reiniciarValoresCounters();
 	limpiarInputs();
