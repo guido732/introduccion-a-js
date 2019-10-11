@@ -26,4 +26,13 @@ function obtenerMinimo(array) {
 	}
 	return valorMinimo;
 }
-console.log(obtenerMinimo(listaOriginal));
+function obtenerMaximo(array) {
+	let valorMaximo = Number(array[0].innerHTML);
+	for (let elemento of array) {
+		if (Number(elemento.innerHTML) > valorMaximo) {
+			valorMaximo = Number(elemento.innerHTML);
+		}
+	}
+	return valorMaximo;
+}
+console.log(obtenerMaximo(listaOriginal));
