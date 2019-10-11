@@ -28,15 +28,17 @@ document.querySelector("#cantidadClasesTotal").value = "";
 let horasTotales = 0;
 let minutosTotales = 0;
 let segundosTotales = 0;
+let cantidadClases = 0;
+let claseCounter = 1;
 
 document.querySelector("#empezar").onclick = function(e) {
 	// Evitar que el boton empezar envíe el form
 	e.preventDefault();
 
 	// Tomar el valor del input y guardarlo en cantidad clases
-	let cantidadClases = document.querySelector("#cantidadClasesTotal").value;
-
+	cantidadClases = document.querySelector("#cantidadClasesTotal").value;
 	// Si se deja el input vacío se lo toma por default como 0;
+	// ! Cambiar a ternario
 	if (cantidadClases === "") {
 		cantidadClases = 0;
 	}
@@ -46,27 +48,34 @@ document.querySelector("#empezar").onclick = function(e) {
 	// Habilitación de inputs correspondientes para la 2da etapa
 	habilitarInputsEtapa2();
 
-	// Inicialización del counter de clases
-	let claseCounter = 1;
-	document.querySelector("#claseCounter").innerHTML = `Clase ${claseCounter} de ${cantidadClases}`;
+	sumaValoresClases();
+};
 
-	document.querySelector("#proximaClase").onclick = function(e) {
-		if (claseCounter <= cantidadClases) {
+function sumaValoresClases() {
+	if (cantidadClases === 0) {
+		deshabilitarInputsEtapa2();
+		habilitarInputsEtapa1();
+		document.querySelector("#resultado").innerHTML = "0 horas 0 minutos 0 segundos";
+	} else if (claseCounter > cantidadClases) {
+		limpiarInputs();
+		document.querySelector(
+			"#resultado"
+		).innerHTML = `Total: ${horasTotales} horas, ${minutosTotales} minutos y ${segundosTotales} segundos`;
+		document.querySelector("#reset").hidden = false;
+		deshabilitarInputsEtapa1();
+		deshabilitarInputsEtapa2();
+	} else {
+		document.querySelector("#claseCounter").innerHTML = `Clase ${claseCounter} de ${cantidadClases}`;
+		document.querySelector("#proximaClase").onclick = function(e) {
+			document.querySelector("#claseCounter").innerHTML = `Clase ${claseCounter} de ${cantidadClases}`;
 			e.preventDefault();
 			sumarValoresInputs();
 			limpiarInputs();
-		} else {
-			document.querySelector("#claseCounter").innerHTML = `Clase ${claseCounter} de ${cantidadClases}`;
-			document.querySelector("#proximaClase").onclick = function(e) {
-				e.preventDefault();
-				document.querySelector(
-					"#result"
-				).innerHTML = `${horasTotales} horas, ${minutosTotales} minutos y ${segundosTotales} segundos`;
-			};
-		}
-	};
-	claseCounter++;
-};
+			claseCounter++;
+			sumaValoresClases();
+		};
+	}
+}
 
 function sumarValoresInputs() {
 	horasTotales += Number(document.querySelector("#duracionHoras").value);
@@ -87,6 +96,10 @@ function deshabilitarInputsEtapa2() {
 	document.querySelector("#duracionMinutos").disabled = true;
 	document.querySelector("#duracionSegundos").disabled = true;
 	document.querySelector("#proximaClase").disabled = true;
+}
+function habilitarInputsEtapa1() {
+	document.querySelector("#empezar").disabled = false;
+	document.querySelector("#cantidadClasesTotal").disabled = false;
 }
 function habilitarInputsEtapa2() {
 	//  No me funciona ésto para no tener que escribir las 4 líneas de abajo
