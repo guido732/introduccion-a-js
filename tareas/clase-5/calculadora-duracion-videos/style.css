@@ -39,6 +39,7 @@ label {
 	margin-left: 0;
 	font-size: 0.9rem;
 	color: #8f8f8f;
+	margin-bottom: 0.2rem;
 }
 input {
 	width: 100%;
@@ -46,6 +47,9 @@ input {
 	border-radius: 0.25rem;
 	border: 1px solid rgb(196, 196, 196);
 	margin-bottom: 1rem;
+}
+input#duracionSegundos {
+	margin-bottom: 2rem;
 }
 
 button {
