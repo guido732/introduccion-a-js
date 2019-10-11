@@ -41,38 +41,31 @@ document.querySelector("#empezar").onclick = function(e) {
 		cantidadClases = 0;
 	}
 	// Deshabilitación de input + boton de la 1ra etapa
-	document.querySelector("#empezar").disabled = true;
-	document.querySelector("#cantidadClasesTotal").disabled = true;
-
-	//  No me funciona ésto para no tener que escribir las 4 líneas de abajo
-	// document.querySelectorAll(".input-clases").disabled = false;
+	deshabilitarInputsEtapa1();
 
 	// Habilitación de inputs correspondientes para la 2da etapa
-	document.querySelector("#duracionHoras").disabled = false;
-	document.querySelector("#duracionMinutos").disabled = false;
-	document.querySelector("#duracionSegundos").disabled = false;
-	document.querySelector("#proximaClase").disabled = false;
+	habilitarInputsEtapa2();
 
 	// Inicialización del counter de clases
 	let claseCounter = 1;
 	document.querySelector("#claseCounter").innerHTML = `Clase ${claseCounter} de ${cantidadClases}`;
 
-	if (claseCounter <= cantidadClases) {
-		document.querySelector("#proximaClase").onclick = function(e) {
+	document.querySelector("#proximaClase").onclick = function(e) {
+		if (claseCounter <= cantidadClases) {
 			e.preventDefault();
 			sumarValoresInputs();
 			limpiarInputs();
-		};
-		claseCounter++;
-		document.querySelector("#claseCounter").innerHTML = `Clase ${claseCounter} de ${cantidadClases}`;
-	} else {
-		document.querySelector("#proximaClase").onclick = function(e) {
-			e.preventDefault();
-			document.querySelector(
-				"#result"
-			).innerHTML = `${horasTotales} horas, ${minutosTotales} minutos y ${segundosTotales} segundos`;
-		};
-	}
+		} else {
+			document.querySelector("#claseCounter").innerHTML = `Clase ${claseCounter} de ${cantidadClases}`;
+			document.querySelector("#proximaClase").onclick = function(e) {
+				e.preventDefault();
+				document.querySelector(
+					"#result"
+				).innerHTML = `${horasTotales} horas, ${minutosTotales} minutos y ${segundosTotales} segundos`;
+			};
+		}
+	};
+	claseCounter++;
 };
 
 function sumarValoresInputs() {
@@ -80,15 +73,26 @@ function sumarValoresInputs() {
 	minutosTotales += Number(document.querySelector("#duracionMinutos").value);
 	segundosTotales += Number(document.querySelector("#duracionSegundos").value);
 }
-
 function limpiarInputs() {
 	document.querySelector("#duracionHoras").value = "";
 	document.querySelector("#duracionMinutos").value = "";
 	document.querySelector("#duracionSegundos").value = "";
+}
+function deshabilitarInputsEtapa1() {
+	document.querySelector("#empezar").disabled = true;
+	document.querySelector("#cantidadClasesTotal").disabled = true;
 }
 function deshabilitarInputsEtapa2() {
 	document.querySelector("#duracionHoras").disabled = true;
 	document.querySelector("#duracionMinutos").disabled = true;
 	document.querySelector("#duracionSegundos").disabled = true;
 	document.querySelector("#proximaClase").disabled = true;
+}
+function habilitarInputsEtapa2() {
+	//  No me funciona ésto para no tener que escribir las 4 líneas de abajo
+	// document.querySelectorAll(".input-clases").disabled = false;
+	document.querySelector("#duracionHoras").disabled = false;
+	document.querySelector("#duracionMinutos").disabled = false;
+	document.querySelector("#duracionSegundos").disabled = false;
+	document.querySelector("#proximaClase").disabled = false;
 }
