@@ -5,7 +5,15 @@
 // mostrar toda la información junta en un campo de texto
 // Y va a cambiar el <h1> para decir "Bienvenido, nombreDeUsuario"!
 
-const usuarioPrimerNombre = document.querySelector("#usuarioPrimerNombre").value;
-const usuarioSegundoNombre = document.querySelector("#usuarioSegundoNombre").value;
-const usuarioApellido = document.querySelector("#usuarioApellido").value;
-const usuarioEdad = document.querySelector("#usuarioEdad").value;
+document.querySelector(".btn-entrar").onclick = function(e) {
+	const usuarioPrimerNombre = document.querySelector("#usuarioPrimerNombre").value;
+	const usuarioSegundoNombre = document.querySelector("#usuarioSegundoNombre").value;
+	const usuarioApellido = document.querySelector("#usuarioApellido").value;
+	const usuarioEdad = document.querySelector("#usuarioEdad").value;
+	e.preventDefault(); // Encontré ésta alternativa al return false, es válida?
+	document.querySelector("#mensajeBienvenida").innerHTML = `Bienvenidx ${usuarioPrimerNombre}`;
+	document.querySelector("#resultado").rows = 3;
+	document.querySelector(
+		"#resultado"
+	).value = `Tu primer nombre es ${usuarioPrimerNombre}, tu segundo nombre es ${usuarioSegundoNombre}, tu apellido es ${usuarioApellido} y tenés ${usuarioEdad}`;
+};
