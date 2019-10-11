@@ -8,6 +8,24 @@
 		<link rel="stylesheet" href="./style.css" />
 	</head>
 	<body>
+		<div class="container">
+			<form action="">
+				<h1>Calculadora de duración de videos r/Argentina-Programa</h1>
+				<div class="cantidad-container">
+					<label for="cantidadClases">Ingresá la cantidad de clases a calcular</label>
+					<input type="number" name="cantidadClases" id="cantidadClases" />
+					<button type="submit" id="empezar" class="btn-calc">Empezar</button>
+				</div>
+				<p id="claseCounter"></p>
+				<label for="duracionHoras">Ingresá la cantidad de horas</label>
+				<input type="number" name="duracionHoras" id="duracionHoras" />
+				<label for="duracionMinutos">Ingresá la cantidad de minutos</label>
+				<input type="number" name="duracionMinutos" id="duracionMinutos" />
+				<label for="duracionSegundos">Ingresá la cantidad de horas</label>
+				<input type="number" name="duracionSegundos" id="duracionSegundos" />
+				<button type="submit" id="calcularTiempoTotal" class="btn-calc">Calcular Tiempo Total</button>
+			</form>
+		</div>
 		<script src="./calculadoraTiempos.js"></script>
 	</body>
 </html>
