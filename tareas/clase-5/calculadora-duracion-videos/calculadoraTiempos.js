@@ -24,13 +24,12 @@
 deshabilitarInputsEtapa2();
 limpiarInputs();
 document.querySelector("#cantidadClasesTotal").value = "";
-
 let horasTotales = 0;
 let minutosTotales = 0;
 let segundosTotales = 0;
 let cantidadClases = 0;
 let claseCounter = 1;
-
+reiniciarValoresCounters();
 document.querySelector("#empezar").onclick = function(e) {
 	// Evitar que el boton empezar envíe el form
 	e.preventDefault();
@@ -47,7 +46,6 @@ document.querySelector("#empezar").onclick = function(e) {
 
 	// Habilitación de inputs correspondientes para la 2da etapa
 	habilitarInputsEtapa2();
-
 	sumaValoresClases();
 };
 
@@ -64,6 +62,14 @@ function sumaValoresClases() {
 		document.querySelector("#reset").hidden = false;
 		deshabilitarInputsEtapa1();
 		deshabilitarInputsEtapa2();
+		document.querySelector("#reset").onclick = function(e) {
+			e.preventDefault();
+			document.querySelector("#resultado").innerHTML = "";
+			document.querySelector("#claseCounter").innerHTML = "";
+			document.querySelector("#reset").hidden = true;
+			habilitarInputsEtapa1();
+			reiniciarValoresCounters();
+		};
 	} else {
 		document.querySelector("#claseCounter").innerHTML = `Clase ${claseCounter} de ${cantidadClases}`;
 		document.querySelector("#proximaClase").onclick = function(e) {
@@ -108,4 +114,11 @@ function habilitarInputsEtapa2() {
 	document.querySelector("#duracionMinutos").disabled = false;
 	document.querySelector("#duracionSegundos").disabled = false;
 	document.querySelector("#proximaClase").disabled = false;
+}
+function reiniciarValoresCounters() {
+	horasTotales = 0;
+	minutosTotales = 0;
+	segundosTotales = 0;
+	cantidadClases = 0;
+	claseCounter = 1;
 }
