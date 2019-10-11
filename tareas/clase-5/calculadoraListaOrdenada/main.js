@@ -17,5 +17,13 @@ function obtenerPromedio(array) {
 	promedio = counter / array.length;
 	return promedio;
 }
-
-console.log(obtenerPromedio(listaOriginal));
+function obtenerMinimo(array) {
+	let valorMinimo = Number(array[0].innerHTML);
+	for (let elemento of array) {
+		if (Number(elemento.innerHTML) < valorMinimo) {
+			valorMinimo = Number(elemento.innerHTML);
+		}
+	}
+	return valorMinimo;
+}
+console.log(obtenerMinimo(listaOriginal));
