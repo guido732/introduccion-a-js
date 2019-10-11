@@ -6,31 +6,6 @@
 // al apretar el botón "Calcular tiempo total", debe mostrar en un
 // <strong> pre-creado el tiempo total de los videos.
 
-// Forzar disable para cuando se hace F5 o CTRL+R en navegador
-
-/* 
-<form action="">
-				<h1>Calculadora de duración de videos r/Argentina-Programa</h1>
-				<div class="cantidad-container">
-					<label for="cantidadClases">Ingresá la cantidad de clases a calcular</label>
-					<input type="number" name="cantidadClases" id="cantidadClasesTotal" required />
-					<button type="submit" id="empezar" class="btn-calc">Empezar</button>
-				</div>
-				<p id="claseCounter"></p>
-				<label for="duracionHoras">Ingresá la cantidad de horas</label>
-				<input type="number" name="duracionHoras" id="duracionHoras" class="input-clases" disabled />
-				<label for="duracionMinutos">Ingresá la cantidad de minutos</label>
-				<input type="number" name="duracionMinutos" id="duracionMinutos" class="input-clases" disabled />
-				<label for="duracionSegundos">Ingresá la cantidad de segundos</label>
-				<input type="number" name="duracionSegundos" id="duracionSegundos" class="input-clases" disabled />
-				<button type="submit" id="proximaClase" class="btn-calc input-clases" disabled>Proxima Clase</button>
-				<button type="reset" id="boton-reset" class="btn-calc" hidden>
-					Reiniciar
-				</button>
-				<strong id="resultado"></strong>
-			</form>
-
-*/
 // Counters
 let horasTotales;
 let minutosTotales;
@@ -76,6 +51,7 @@ botonEmpezar.onclick = function(e) {
 
 function sumaValoresClases() {
 	if (cantidadClases === 0) {
+		// Si no se ingresa valor de clases deshabilitar todo, mostrar reset, mostrar counter final en 0;
 		deshabilitarInputsEtapa2();
 		deshabilitarInputsEtapa1();
 		textoResultado.innerHTML = "0 horas 0 minutos 0 segundos";
@@ -85,6 +61,8 @@ function sumaValoresClases() {
 			resetProgram();
 		};
 	} else if (claseCounter > cantidadClases) {
+		// Si el counter supera la cantidad de clases ingresadas por el usuario
+		// Limpiar inputs, mostrar resultado, mostrar botón de reset, deshabilitar inputs 1 & 2, funcionalidad para cuando se hace clic en reset.
 		limpiarInputs();
 		textoResultado.innerHTML = `Total: ${horasTotales} horas, ${minutosTotales} minutos y ${segundosTotales} segundos`;
 		botonReset.hidden = false;
@@ -95,6 +73,9 @@ function sumaValoresClases() {
 			resetProgram();
 		};
 	} else {
+		// Si el numero del counter está dentro del máximo de clases
+		// Mostrar el contador de clase actual (clase x de y)
+		// Al hacer clic en el botón próxima clase: sumar valores, limpiar inputs, aumentar el counter y sumar vuelve a llamarse a si misma para volver a chequear los contadores de clases vs input
 		displayClaseCounter.innerHTML = `Clase ${claseCounter} de ${cantidadClases}`;
 		botonProximaClase.onclick = function(e) {
 			e.preventDefault();
@@ -107,37 +88,44 @@ function sumaValoresClases() {
 }
 
 function sumarValoresInputs() {
+	// Convierte valores a numero y suma valores de los inputs a los counters
 	horasTotales += Number(inputHoras.value);
 	minutosTotales += Number(inputMinutos.value);
 	segundosTotales += Number(inputSegundos.value);
 }
 function limpiarInputs() {
+	// Limpia todos los inputs
 	inputHoras.value = "";
 	inputMinutos.value = "";
 	inputSegundos.value = "";
 	document.querySelector("#cantidadClasesTotal").value = "";
 }
-function deshabilitarInputsEtapa1() {
-	botonEmpezar.disabled = true;
-	document.querySelector("#cantidadClasesTotal").disabled = true;
-}
-function deshabilitarInputsEtapa2() {
-	inputHoras.disabled = true;
-	inputMinutos.disabled = true;
-	inputSegundos.disabled = true;
-	botonProximaClase.disabled = true;
-}
 function habilitarInputsEtapa1() {
+	// Habilita el botón de comenzar programa y el input de cantidad de clases
 	botonEmpezar.disabled = false;
 	document.querySelector("#cantidadClasesTotal").disabled = false;
 }
+function deshabilitarInputsEtapa1() {
+	// Deshabilita el botón de comenzar programa y el input de cantidad de clases
+	botonEmpezar.disabled = true;
+	document.querySelector("#cantidadClasesTotal").disabled = true;
+}
 function habilitarInputsEtapa2() {
+	// Habilita inputs y botón de próxima clase
 	inputHoras.disabled = false;
 	inputMinutos.disabled = false;
 	inputSegundos.disabled = false;
 	botonProximaClase.disabled = false;
 }
+function deshabilitarInputsEtapa2() {
+	// Deshabilita inputs y botón de próxima clase
+	inputHoras.disabled = true;
+	inputMinutos.disabled = true;
+	inputSegundos.disabled = true;
+	botonProximaClase.disabled = true;
+}
 function reiniciarValoresCounters() {
+	// Al finalizar el programa se llama ésta función que resetea contadores y variables de totales
 	horasTotales = 0;
 	minutosTotales = 0;
 	segundosTotales = 0;
@@ -145,6 +133,7 @@ function reiniciarValoresCounters() {
 	claseCounter = 1;
 }
 function resetProgram() {
+	// Borra el mensaje de resultado final, borra el counter de clase (clase x de y), oculta el botón de reset, habilita inputs de etapa 1, reinicia valores de counters y limpia inputs de cualquier valor previo
 	textoResultado.innerHTML = "";
 	displayClaseCounter.innerHTML = "";
 	botonReset.hidden = true;
