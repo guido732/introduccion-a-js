@@ -13,21 +13,21 @@
 				<h1>Calculadora de duración de videos r/Argentina-Programa</h1>
 				<div class="cantidad-container">
 					<label for="cantidadClases">Ingresá la cantidad de clases a calcular</label>
-					<input type="number" name="cantidadClases" id="cantidadClases" required />
+					<input type="number" name="cantidadClases" id="cantidadClasesTotal" required />
 					<button type="submit" id="empezar" class="btn-calc">Empezar</button>
 				</div>
 				<p id="claseCounter"></p>
 				<label for="duracionHoras">Ingresá la cantidad de horas</label>
-				<input type="number" name="duracionHoras" id="duracionHoras" disabled />
+				<input type="number" name="duracionHoras" id="duracionHoras" class="input-clases" disabled />
 				<label for="duracionMinutos">Ingresá la cantidad de minutos</label>
-				<input type="number" name="duracionMinutos" id="duracionMinutos" disabled />
-				<label for="duracionSegundos">Ingresá la cantidad de horas</label>
-				<input type="number" name="duracionSegundos" id="duracionSegundos" disabled />
-				<button type="submit" id="proximaClase" class="btn-calc" disabled>Proxima Clase</button>
+				<input type="number" name="duracionMinutos" id="duracionMinutos" class="input-clases" disabled />
+				<label for="duracionSegundos">Ingresá la cantidad de segundos</label>
+				<input type="number" name="duracionSegundos" id="duracionSegundos" class="input-clases" disabled />
+				<button type="submit" id="proximaClase" class="btn-calc input-clases" disabled>Proxima Clase</button>
 				<button type="submit" id="calcularTiempoTotal" class="btn-calc" hidden>
 					Calcular Tiempo Total
 				</button>
-				<strong></strong>
+				<strong id="resultado"></strong>
 			</form>
 		</div>
 		<script src="./calculadoraTiempos.js"></script>
