@@ -18,12 +18,16 @@
 				</div>
 				<p id="claseCounter"></p>
 				<label for="duracionHoras">Ingresá la cantidad de horas</label>
-				<input type="number" name="duracionHoras" id="duracionHoras" />
+				<input type="number" name="duracionHoras" id="duracionHoras" disabled />
 				<label for="duracionMinutos">Ingresá la cantidad de minutos</label>
-				<input type="number" name="duracionMinutos" id="duracionMinutos" />
+				<input type="number" name="duracionMinutos" id="duracionMinutos" disabled />
 				<label for="duracionSegundos">Ingresá la cantidad de horas</label>
-				<input type="number" name="duracionSegundos" id="duracionSegundos" />
-				<button type="submit" id="calcularTiempoTotal" class="btn-calc">Calcular Tiempo Total</button>
+				<input type="number" name="duracionSegundos" id="duracionSegundos" disabled />
+				<button type="submit" id="proximaClase" class="btn-calc" disabled>Proxima Clase</button>
+				<button type="submit" id="calcularTiempoTotal" class="btn-calc" hidden>
+					Calcular Tiempo Total
+				</button>
+				<strong></strong>
 			</form>
 		</div>
 		<script src="./calculadoraTiempos.js"></script>
