@@ -77,6 +77,13 @@ function obtenerNumeroMasFrecuente(arrayInput) {
 	return valorMaximo;
 }
 
+document.querySelector("#promedio-output").innerHTML = `El valor promedio es de ${obtenerPromedio(listaOriginal)}`;
+document.querySelector("#minimo-output").innerHTML = `El valor mínimo es de ${obtenerMinimo(listaOriginal)}`;
+document.querySelector("#maximo-output").innerHTML = `El valor máximo es de ${obtenerMaximo(listaOriginal)}`;
+document.querySelector("#frecuente-output").innerHTML = `El valor más frecuente es ${obtenerNumeroMasFrecuente(
+	listaOriginal
+)}`;
+
 /*   function obtenerNumeroMasFrecuenteObjetos(valores) {
 	if (valores.length === 0) {
 	  return null;
