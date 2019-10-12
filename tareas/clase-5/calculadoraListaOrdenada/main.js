@@ -41,17 +41,25 @@ function obtenerNumeroMasFrecuente(arrayInput) {
 		return null;
 	}
 
+	const arrayTrabajable = [];
+	arrayInput.forEach(element => {
+		arrayTrabajable.push(Number(element.innerHTML));
+		if (Number(element.innerHTML === NaN)) {
+			return false;
+		}
+	});
+
 	const contador = [];
-	for (let i = 0; i < arrayInput.length; i++) {
-		if (contador[arrayInput[i]]) {
-			contador[arrayInput[i]] += 1;
+	for (let i = 0; i < arrayTrabajable.length; i++) {
+		if (contador[arrayTrabajable[i]]) {
+			contador[arrayTrabajable[i]] += 1;
 		} else {
-			contador[arrayInput[i]] = 1;
+			contador[arrayTrabajable[i]] = 1;
 		}
 	}
 
-	let cantidadMaxima = arrayInput[0];
-	let valorMaximo = arrayInput[0];
+	let cantidadMaxima = arrayTrabajable[0];
+	let valorMaximo = arrayTrabajable[0];
 
 	for (let j = 0; j < contador.length; j++) {
 		if (contador[j] > cantidadMaxima) {
@@ -64,4 +72,25 @@ function obtenerNumeroMasFrecuente(arrayInput) {
 }
 
 const arrayPrueba = [1, 1, 3, 3, 3, 3, 3, 3];
-console.log(obtenerNumeroMasFrecuente(arrayPrueba));
+console.log(obtenerNumeroMasFrecuente(listaOriginal));
+
+/*   function obtenerNumeroMasFrecuenteObjetos(valores) {
+	if (valores.length === 0) {
+	  return null;
+	}
+  
+	const contador = {};
+	for (let i = 0; i < valores.length; i++) {
+	  if (contador[valores[i]]) {
+		contador[valores[i]] += 1;
+	  } else {
+		contador[valores[i]] = 1;
+	  }
+  
+	}
+  
+	return contador;
+  }
+  
+  const arrayPrueba = [1, 2, 1, 3, 1, 2, 1, 3, 1, 3, 4, 2, 1, 3, 2, 1, 3, 1];
+  console.log(obtenerNumeroMasFrecuenteObjetos(arrayPrueba)); */
