@@ -35,4 +35,33 @@ function obtenerMaximo(array) {
 	}
 	return valorMaximo;
 }
-console.log(obtenerMaximo(listaOriginal));
+
+function obtenerNumeroMasFrecuente(arrayInput) {
+	if (arrayInput.length === 0) {
+		return null;
+	}
+
+	const contador = [];
+	for (let i = 0; i < arrayInput.length; i++) {
+		if (contador[arrayInput[i]]) {
+			contador[arrayInput[i]] += 1;
+		} else {
+			contador[arrayInput[i]] = 1;
+		}
+	}
+
+	let cantidadMaxima = arrayInput[0];
+	let valorMaximo = arrayInput[0];
+
+	for (let j = 0; j < contador.length; j++) {
+		if (contador[j] > cantidadMaxima) {
+			cantidadMaxima = contador[j];
+			valorMaximo = contador.indexOf(contador[j]);
+		}
+	}
+
+	return valorMaximo;
+}
+
+const arrayPrueba = [1, 1, 3, 3, 3, 3, 3, 3];
+console.log(obtenerNumeroMasFrecuente(arrayPrueba));
