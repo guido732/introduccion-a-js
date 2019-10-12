@@ -64,7 +64,7 @@ function obtenerNumeroMasFrecuente(arrayInput) {
 
 	// Generación de variables de output
 	let cantidadMaxima = 0;
-	let valorMaximo = arrayTrabajable.indexOf(arrayTrabajable[0]);
+	let valorMaximo = 0;
 
 	// Recorrido del array, comparativa con valor de referencia para encontrar el mayor y devolverlo en mi return
 	for (let j = 0; j < contador.length; j++) {
@@ -73,8 +73,6 @@ function obtenerNumeroMasFrecuente(arrayInput) {
 			valorMaximo = contador.indexOf(contador[j]);
 		}
 	}
-	console.log(valorMaximo);
-
 	return valorMaximo;
 }
 
