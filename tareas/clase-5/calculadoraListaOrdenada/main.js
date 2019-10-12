@@ -41,6 +41,7 @@ function obtenerNumeroMasFrecuente(arrayInput) {
 		return null;
 	}
 
+	// Generación de arrayTrabajable para evitar procesar con Number e InnerHTML cada elemento
 	const arrayTrabajable = [];
 	arrayInput.forEach(element => {
 		arrayTrabajable.push(Number(element.innerHTML));
@@ -49,6 +50,9 @@ function obtenerNumeroMasFrecuente(arrayInput) {
 		}
 	});
 
+	// Agregado de elementos a nuevo array llamado Contador
+	// Cada índice es un número correspondiente a el array de entrada mi valor
+	// Cada valor correspondiente a dicho índice es el counter de cuántas veces aparece
 	const contador = [];
 	for (let i = 0; i < arrayTrabajable.length; i++) {
 		if (contador[arrayTrabajable[i]]) {
@@ -58,9 +62,11 @@ function obtenerNumeroMasFrecuente(arrayInput) {
 		}
 	}
 
+	// Generación de variables de output
 	let cantidadMaxima = arrayTrabajable[0];
 	let valorMaximo = arrayTrabajable[0];
 
+	// Recorrido del array, comparativa con valor de referencia para encontrar el mayor y devolverlo en mi return
 	for (let j = 0; j < contador.length; j++) {
 		if (contador[j] > cantidadMaxima) {
 			cantidadMaxima = contador[j];
@@ -70,9 +76,6 @@ function obtenerNumeroMasFrecuente(arrayInput) {
 
 	return valorMaximo;
 }
-
-const arrayPrueba = [1, 1, 3, 3, 3, 3, 3, 3];
-console.log(obtenerNumeroMasFrecuente(listaOriginal));
 
 /*   function obtenerNumeroMasFrecuenteObjetos(valores) {
 	if (valores.length === 0) {
