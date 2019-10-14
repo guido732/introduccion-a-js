@@ -6,15 +6,28 @@ Al hacer click en "calcular", mostrar en un elemento pre-existente el mayor sala
 Punto bonus: si hay inputs vacíos, ignorarlos en el cálculo (no contarlos como 0).
 */
 
-document.querySelector("#submit-cantidad-familiares").onclick = function(e) {
+let inputCounter = 0;
+
+document.querySelector("#agregar-familiar").onclick = function(e) {
 	e.preventDefault();
-	const cantidadFamiliares = Number(document.querySelector("#cantidad-familiares").value);
-	if (cantidadFamiliares < 1) {
-		return false;
-	}
-	agregarElementos(cantidadFamiliares);
+
+	agregarElemento();
 };
-document.querySelector("#calcular-edades").onclick = function(e) {
+
+function agregarElemento() {
+	const newLabel = document.createElement("label");
+	newLabel.for = `Familiar ${inputCounter + 1}`;
+	newLabel.textContent = `Edad familiar ${inputCounter + 1}`;
+	newLabel.classList.add("generated-element-label");
+	const newInput = document.createElement("input");
+	newInput.id = `familiar-${inputCounter + 1}`;
+	newInput.classList.add("generated-element-input");
+	document.querySelector("#element-container").appendChild(newLabel);
+	document.querySelector("#element-container").appendChild(newInput);
+	inputCounter++;
+}
+
+/* document.querySelector("#calcular-edades").onclick = function(e) {
 	e.preventDefault();
 	const inputsEdadesCrudo = document.querySelectorAll(".generated-element-input");
 	const inputsEdades = [];
@@ -25,7 +38,7 @@ document.querySelector("#calcular-edades").onclick = function(e) {
 	contenedorOutput.appendChild(crearElementoParrafo(calcularEdadPromedio(inputsEdades), "promedio"));
 	contenedorOutput.appendChild(crearElementoParrafo(calcularEdadMinima(inputsEdades), "mínima"));
 	contenedorOutput.appendChild(crearElementoParrafo(calcularEdadMaxima(inputsEdades), "máxima"));
-};
+}; */
 document.querySelector("#reset").onclick = function(e) {
 	e.preventDefault();
 	const inputs = document.querySelectorAll(".generated-element-input");
@@ -45,22 +58,7 @@ document.querySelector("#reset").onclick = function(e) {
 	document.querySelector("#cantidad-familiares").value = "";
 	document.querySelector("#calcular-edades").hidden = true;
 };
-function agregarElementos(cantidad) {
-	for (let i = 0; i < cantidad; i++) {
-		const newLabel = document.createElement("label");
-		newLabel.for = `Familiar ${i + 1}`;
-		newLabel.textContent = `Edad familiar ${i + 1}`;
-		newLabel.classList.add("generated-element-label");
-		const newInput = document.createElement("input");
-		newInput.id = `familiar-${i + 1}`;
-		newInput.classList.add("generated-element-input");
-		document.querySelector("#element-container").appendChild(newLabel);
-		document.querySelector("#element-container").appendChild(newInput);
-	}
-	document.querySelector("#calcular-edades").hidden = false;
-	document.querySelector("#cantidad-familiares").disabled = true;
-	document.querySelector("#submit-cantidad-familiares").disabled = true;
-}
+
 function calcularEdadPromedio(arrayEdades) {
 	let edadPromedio = 0;
 	for (let i = 0; i < arrayEdades.length; i++) {
