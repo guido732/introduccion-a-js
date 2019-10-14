@@ -10,8 +10,11 @@ let inputCounter = 0;
 
 document.querySelector("#agregar-familiar").onclick = function(e) {
 	e.preventDefault();
-
 	agregarElemento();
+};
+document.querySelector("#eliminar-familiar").onclick = function(e) {
+	e.preventDefault();
+	eliminarElemento();
 };
 
 function agregarElemento() {
@@ -25,6 +28,17 @@ function agregarElemento() {
 	document.querySelector("#element-container").appendChild(newLabel);
 	document.querySelector("#element-container").appendChild(newInput);
 	inputCounter++;
+}
+
+function eliminarElemento() {
+	if (inputCounter === 0) {
+		return false;
+	}
+	const inputs = document.querySelectorAll(".generated-element-input");
+	inputs[inputs.length - 1].remove();
+	const labels = document.querySelectorAll(".generated-element-label");
+	labels[labels.length - 1].remove();
+	inputCounter--;
 }
 
 /* document.querySelector("#calcular-edades").onclick = function(e) {
@@ -53,10 +67,6 @@ document.querySelector("#reset").onclick = function(e) {
 	paragraphs.forEach(element => {
 		element.remove();
 	});
-	document.querySelector("#submit-cantidad-familiares").disabled = false;
-	document.querySelector("#cantidad-familiares").disabled = false;
-	document.querySelector("#cantidad-familiares").value = "";
-	document.querySelector("#calcular-edades").hidden = true;
 };
 
 function calcularEdadPromedio(arrayEdades) {
