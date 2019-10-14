@@ -95,13 +95,53 @@ button:disabled:active {
   background-color: #aee0ff;
 }
 
+.btn-main:hover {
+  background-color: #73aed3;
+}
+
 .btn-secondary {
   background-color: #a7a7a7;
   color: white;
 }
 
+.btn-secondary:hover {
+  background-color: #888888;
+}
+
 .btn-secondary:active {
-  background-color: #aee0ff;
+  background-color: #bdbdbd;
+}
+
+.btn-reset {
+  background-color: white;
+  color: #cc2929;
+  border: 1px solid #cc2929;
+}
+
+.btn-reset:hover {
+  background-color: #ffc1c1;
+  border: 1px solid #ffc1c1;
+}
+
+.btn-reset:active {
+  background-color: #ff9d9d;
+  border: 1px solid #ff9d9d;
+}
+
+.btn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+
+.btn-container button {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
 }
 
 .element-container {
@@ -128,21 +168,5 @@ button:disabled:active {
 
 .output p:last-child {
   margin-bottom: 0.75rem;
-}
-
-.btn-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
-}
-
-.btn-container button {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
 }
 /*# sourceMappingURL=style.css.map */

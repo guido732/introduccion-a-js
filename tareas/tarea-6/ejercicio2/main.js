@@ -19,6 +19,10 @@ document.querySelector("#eliminar-familiar").onclick = function(e) {
 
 document.querySelector("#calcular").onclick = function(e) {
 	e.preventDefault();
+	const paragraphs = document.querySelectorAll(".paragraph-element");
+	paragraphs.forEach(element => {
+		element.remove();
+	});
 	const inputsEdadesCrudo = document.querySelectorAll(".generated-element-input");
 	const inputsEdades = [];
 	for (let elemento of inputsEdadesCrudo) {
