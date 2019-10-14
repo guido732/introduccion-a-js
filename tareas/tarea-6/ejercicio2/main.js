@@ -71,6 +71,16 @@ document.querySelector("#reset").onclick = function(e) {
 	inputCounter = 0;
 };
 
+function validarArray(arrayInput) {
+	let arrayOutput = [];
+	for (let arrayValue of arrayInput) {
+		if (arrayValue > 0) {
+			arrayOutput.push(arrayValue);
+		}
+	}
+	return arrayOutput;
+}
+
 function calcularSueldoPromedio(arraySueldos) {
 	let sueldoPromedio = 0;
 	let counter = 0;
@@ -81,20 +91,21 @@ function calcularSueldoPromedio(arraySueldos) {
 		}
 	}
 	if (counter === 0) {
-		return 0;
+		return "Ingresá al menos un sueldo válido";
 	} else {
 		return sueldoPromedio / counter;
 	}
 }
 function calcularSueldoMinimo(arraySueldos) {
-	let sueldoMinimo = arraySueldos[0];
-	for (let i = 0; i < arraySueldos.length; i++) {
-		if (arraySueldos[i] < sueldoMinimo && arraySueldos[i] >= 1) {
-			sueldoMinimo = arraySueldos[i];
+	let arraySueldosProcesado = validarArray(arraySueldos);
+	let sueldoMinimo = arraySueldosProcesado[0];
+	for (let i = 0; i < arraySueldosProcesado.length; i++) {
+		if (arraySueldosProcesado[i] < sueldoMinimo && arraySueldos[i] >= 1) {
+			sueldoMinimo = arraySueldosProcesado[i];
 		}
 	}
-	if (sueldoMinimo < 1) {
-		return 0;
+	if (sueldoMinimo < 1 || sueldoMinimo === undefined) {
+		return "Ingresá al menos un sueldo válido";
 	} else {
 		return sueldoMinimo;
 	}
@@ -107,7 +118,7 @@ function calcularSueldoMaximo(arraySueldos) {
 		}
 	}
 	if (sueldoMaximo < 1) {
-		return 0;
+		return "Ingresá al menos un sueldo válido";
 	} else {
 		return sueldoMaximo;
 	}
