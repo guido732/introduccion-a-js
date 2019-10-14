@@ -34,6 +34,23 @@ document.querySelector("#calcular").onclick = function(e) {
 	contenedorOutput.appendChild(crearElementoParrafo(calcularSueldoMaximo(inputsEdades), "máximo"));
 };
 
+document.querySelector("#reset").onclick = function(e) {
+	e.preventDefault();
+	const inputs = document.querySelectorAll(".generated-element-input");
+	inputs.forEach(element => {
+		element.remove();
+	});
+	const labels = document.querySelectorAll(".generated-element-label");
+	labels.forEach(element => {
+		element.remove();
+	});
+	const paragraphs = document.querySelectorAll(".paragraph-element");
+	paragraphs.forEach(element => {
+		element.remove();
+	});
+	inputCounter = 0;
+};
+
 function agregarElemento() {
 	const newLabel = document.createElement("label");
 	newLabel.for = `Familiar ${inputCounter + 1}`;
@@ -57,23 +74,6 @@ function eliminarElemento() {
 	labels[labels.length - 1].remove();
 	inputCounter--;
 }
-
-document.querySelector("#reset").onclick = function(e) {
-	e.preventDefault();
-	const inputs = document.querySelectorAll(".generated-element-input");
-	inputs.forEach(element => {
-		element.remove();
-	});
-	const labels = document.querySelectorAll(".generated-element-label");
-	labels.forEach(element => {
-		element.remove();
-	});
-	const paragraphs = document.querySelectorAll(".paragraph-element");
-	paragraphs.forEach(element => {
-		element.remove();
-	});
-	inputCounter = 0;
-};
 
 function validarArray(arrayInput) {
 	let arrayOutput = [];
