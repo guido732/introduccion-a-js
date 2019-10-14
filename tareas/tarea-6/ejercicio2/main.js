@@ -17,6 +17,19 @@ document.querySelector("#eliminar-familiar").onclick = function(e) {
 	eliminarElemento();
 };
 
+document.querySelector("#calcular").onclick = function(e) {
+	e.preventDefault();
+	const inputsEdadesCrudo = document.querySelectorAll(".generated-element-input");
+	const inputsEdades = [];
+	for (let elemento of inputsEdadesCrudo) {
+		inputsEdades.push(Number(elemento.value));
+	}
+	const contenedorOutput = document.querySelector("#element-container");
+	contenedorOutput.appendChild(crearElementoParrafo(calcularSueldoPromedio(inputsEdades), "promedio"));
+	contenedorOutput.appendChild(crearElementoParrafo(calcularSueldoMinimo(inputsEdades), "mínima"));
+	contenedorOutput.appendChild(crearElementoParrafo(calcularSueldoMaximo(inputsEdades), "máxima"));
+};
+
 function agregarElemento() {
 	const newLabel = document.createElement("label");
 	newLabel.for = `Familiar ${inputCounter + 1}`;
@@ -41,18 +54,6 @@ function eliminarElemento() {
 	inputCounter--;
 }
 
-/* document.querySelector("#calcular-edades").onclick = function(e) {
-	e.preventDefault();
-	const inputsEdadesCrudo = document.querySelectorAll(".generated-element-input");
-	const inputsEdades = [];
-	for (let elemento of inputsEdadesCrudo) {
-		inputsEdades.push(Number(elemento.value));
-	}
-	const contenedorOutput = document.querySelector("#output");
-	contenedorOutput.appendChild(crearElementoParrafo(calcularEdadPromedio(inputsEdades), "promedio"));
-	contenedorOutput.appendChild(crearElementoParrafo(calcularEdadMinima(inputsEdades), "mínima"));
-	contenedorOutput.appendChild(crearElementoParrafo(calcularEdadMaxima(inputsEdades), "máxima"));
-}; */
 document.querySelector("#reset").onclick = function(e) {
 	e.preventDefault();
 	const inputs = document.querySelectorAll(".generated-element-input");
@@ -69,30 +70,30 @@ document.querySelector("#reset").onclick = function(e) {
 	});
 };
 
-function calcularEdadPromedio(arrayEdades) {
-	let edadPromedio = 0;
-	for (let i = 0; i < arrayEdades.length; i++) {
-		edadPromedio += arrayEdades[i];
+function calcularSueldoPromedio(arraySueldos) {
+	let sueldoPromedio = 0;
+	for (let i = 0; i < arraySueldos.length; i++) {
+		sueldoPromedio += arraySueldos[i];
 	}
-	return edadPromedio / arrayEdades.length;
+	return sueldoPromedio / arraySueldos.length;
 }
-function calcularEdadMinima(arrayEdades) {
-	let edadMinima = arrayEdades[0];
-	for (let i = 0; i < arrayEdades.length; i++) {
-		if (arrayEdades[i] < edadMinima) {
-			edadMinima = arrayEdades[i];
+function calcularSueldoMinimo(arraySueldos) {
+	let sueldoMinimo = arraySueldos[0];
+	for (let i = 0; i < arraySueldos.length; i++) {
+		if (arraySueldos[i] < sueldoMinimo) {
+			sueldoMinimo = arraySueldos[i];
 		}
 	}
-	return edadMinima;
+	return sueldoMinimo;
 }
-function calcularEdadMaxima(arrayEdades) {
-	let edadMaxima = arrayEdades[0];
-	for (let i = 0; i < arrayEdades.length; i++) {
-		if (arrayEdades[i] > edadMaxima) {
-			edadMaxima = arrayEdades[i];
+function calcularSueldoMaximo(arraySueldos) {
+	let sueldoMaximo = arraySueldos[0];
+	for (let i = 0; i < arraySueldos.length; i++) {
+		if (arraySueldos[i] > sueldoMaximo) {
+			sueldoMaximo = arraySueldos[i];
 		}
 	}
-	return edadMaxima;
+	return sueldoMaximo;
 }
 function crearElementoParrafo(valorInterno, nombreFuncion) {
 	const nuevoParrafo = document.createElement("p");
