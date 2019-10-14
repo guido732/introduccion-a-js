@@ -15,7 +15,7 @@ body {
   display: -ms-flexbox;
   display: flex;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #dce8f3;
   -webkit-box-align: start;
       -ms-flex-align: start;
@@ -32,6 +32,7 @@ h2 {
 
 form {
   margin-top: 2rem;
+  margin-bottom: 2rem;
   background-color: #fff;
   border-radius: 0.5rem;
   -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);

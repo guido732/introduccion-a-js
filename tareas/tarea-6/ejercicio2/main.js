@@ -68,6 +68,7 @@ document.querySelector("#reset").onclick = function(e) {
 	paragraphs.forEach(element => {
 		element.remove();
 	});
+	inputCounter = 0;
 };
 
 function calcularSueldoPromedio(arraySueldos) {
