@@ -8,7 +8,7 @@ Punto bonus: Crear un botón para "empezar de nuevo" que empiece el proceso nuev
 document.querySelector("#submit-cantidad-familiares").onclick = function(e) {
 	e.preventDefault();
 	const cantidadFamiliares = Number(document.querySelector("#cantidad-familiares").value);
-	if (cantidadFamiliares === 0 || cantidadFamiliares < 0) {
+	if (cantidadFamiliares < 1) {
 		return false;
 	}
 	agregarElementos(cantidadFamiliares);
@@ -48,7 +48,7 @@ function agregarElementos(cantidad) {
 	for (let i = 0; i < cantidad; i++) {
 		const newLabel = document.createElement("label");
 		newLabel.for = `Familiar ${i + 1}`;
-		newLabel.innerHTML = `Edad familiar ${i + 1}`;
+		newLabel.textContent = `Edad familiar ${i + 1}`;
 		newLabel.classList.add("generated-element-label");
 		const newInput = document.createElement("input");
 		newInput.id = `familiar-${i + 1}`;
