@@ -97,7 +97,7 @@ function calcularSueldoPromedio(arraySueldos) {
 	if (counter === 0) {
 		return "Ingresá al menos un sueldo válido";
 	} else {
-		return sueldoPromedio / counter;
+		return (sueldoPromedio / counter).toFixed(2);
 	}
 }
 function calcularSueldoMinimo(arraySueldos) {
@@ -111,7 +111,7 @@ function calcularSueldoMinimo(arraySueldos) {
 	if (sueldoMinimo < 1 || sueldoMinimo === undefined) {
 		return "Ingresá al menos un sueldo válido";
 	} else {
-		return sueldoMinimo;
+		return sueldoMinimo.toFixed(2);
 	}
 }
 function calcularSueldoMaximo(arraySueldos) {
@@ -124,7 +124,7 @@ function calcularSueldoMaximo(arraySueldos) {
 	if (sueldoMaximo < 1) {
 		return "Ingresá al menos un sueldo válido";
 	} else {
-		return sueldoMaximo;
+		return sueldoMaximo.toFixed(2);
 	}
 }
 function crearElementoParrafo(valorInterno, nombreFuncion) {
