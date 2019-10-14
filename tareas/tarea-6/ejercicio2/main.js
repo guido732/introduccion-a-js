@@ -30,6 +30,7 @@ document.querySelector("#calcular").onclick = function(e) {
 	}
 	const contenedorOutput = document.querySelector("#output");
 	contenedorOutput.appendChild(crearElementoParrafo(calcularSueldoPromedio(inputsEdades), "promedio"));
+	contenedorOutput.appendChild(crearElementoParrafo(calcularSueldoMensualPromedio(inputsEdades), "mensual promedio"));
 	contenedorOutput.appendChild(crearElementoParrafo(calcularSueldoMinimo(inputsEdades), "mínimo"));
 	contenedorOutput.appendChild(crearElementoParrafo(calcularSueldoMaximo(inputsEdades), "máximo"));
 };
@@ -98,6 +99,21 @@ function calcularSueldoPromedio(arraySueldos) {
 		return "Ingresá al menos un sueldo válido";
 	} else {
 		return (sueldoPromedio / counter).toFixed(2);
+	}
+}
+function calcularSueldoMensualPromedio(arraySueldos) {
+	let sueldoPromedio = 0;
+	let counter = 0;
+	for (let i = 0; i < arraySueldos.length; i++) {
+		if (arraySueldos[i] >= 1) {
+			counter++;
+			sueldoPromedio += arraySueldos[i];
+		}
+	}
+	if (counter === 0) {
+		return "Ingresá al menos un sueldo válido";
+	} else {
+		return (sueldoPromedio / counter / 12).toFixed(2);
 	}
 }
 function calcularSueldoMinimo(arraySueldos) {
