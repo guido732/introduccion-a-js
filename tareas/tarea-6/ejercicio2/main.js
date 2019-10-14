@@ -73,32 +73,48 @@ document.querySelector("#reset").onclick = function(e) {
 
 function calcularSueldoPromedio(arraySueldos) {
 	let sueldoPromedio = 0;
+	let counter = 0;
 	for (let i = 0; i < arraySueldos.length; i++) {
-		sueldoPromedio += arraySueldos[i];
+		if (arraySueldos[i] >= 1) {
+			counter++;
+			sueldoPromedio += arraySueldos[i];
+		}
 	}
-	return sueldoPromedio / arraySueldos.length;
+	if (counter === 0) {
+		return 0;
+	} else {
+		return sueldoPromedio / counter;
+	}
 }
 function calcularSueldoMinimo(arraySueldos) {
 	let sueldoMinimo = arraySueldos[0];
 	for (let i = 0; i < arraySueldos.length; i++) {
-		if (arraySueldos[i] < sueldoMinimo) {
+		if (arraySueldos[i] < sueldoMinimo && arraySueldos[i] >= 1) {
 			sueldoMinimo = arraySueldos[i];
 		}
 	}
-	return sueldoMinimo;
+	if (sueldoMinimo < 1) {
+		return 0;
+	} else {
+		return sueldoMinimo;
+	}
 }
 function calcularSueldoMaximo(arraySueldos) {
 	let sueldoMaximo = arraySueldos[0];
 	for (let i = 0; i < arraySueldos.length; i++) {
-		if (arraySueldos[i] > sueldoMaximo) {
+		if (arraySueldos[i] > sueldoMaximo && arraySueldos[i] >= 1) {
 			sueldoMaximo = arraySueldos[i];
 		}
 	}
-	return sueldoMaximo;
+	if (sueldoMaximo < 1) {
+		return 0;
+	} else {
+		return sueldoMaximo;
+	}
 }
 function crearElementoParrafo(valorInterno, nombreFuncion) {
 	const nuevoParrafo = document.createElement("p");
 	nuevoParrafo.classList.add("paragraph-element");
-	nuevoParrafo.innerHTML = `El sueldo ${nombreFuncion} es ${valorInterno}`;
+	nuevoParrafo.innerHTML = `El sueldo ${nombreFuncion} es $${valorInterno}`;
 	return nuevoParrafo;
 }
