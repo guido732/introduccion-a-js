@@ -24,16 +24,16 @@ document.querySelector("#calcular").onclick = function(e) {
 	for (let elemento of inputsEdadesCrudo) {
 		inputsEdades.push(Number(elemento.value));
 	}
-	const contenedorOutput = document.querySelector("#element-container");
+	const contenedorOutput = document.querySelector("#output");
 	contenedorOutput.appendChild(crearElementoParrafo(calcularSueldoPromedio(inputsEdades), "promedio"));
-	contenedorOutput.appendChild(crearElementoParrafo(calcularSueldoMinimo(inputsEdades), "mínima"));
-	contenedorOutput.appendChild(crearElementoParrafo(calcularSueldoMaximo(inputsEdades), "máxima"));
+	contenedorOutput.appendChild(crearElementoParrafo(calcularSueldoMinimo(inputsEdades), "mínimo"));
+	contenedorOutput.appendChild(crearElementoParrafo(calcularSueldoMaximo(inputsEdades), "máximo"));
 };
 
 function agregarElemento() {
 	const newLabel = document.createElement("label");
 	newLabel.for = `Familiar ${inputCounter + 1}`;
-	newLabel.textContent = `Edad familiar ${inputCounter + 1}`;
+	newLabel.textContent = `Sueldo anual familiar ${inputCounter + 1}`;
 	newLabel.classList.add("generated-element-label");
 	const newInput = document.createElement("input");
 	newInput.id = `familiar-${inputCounter + 1}`;
@@ -99,6 +99,6 @@ function calcularSueldoMaximo(arraySueldos) {
 function crearElementoParrafo(valorInterno, nombreFuncion) {
 	const nuevoParrafo = document.createElement("p");
 	nuevoParrafo.classList.add("paragraph-element");
-	nuevoParrafo.innerHTML = `La edad ${nombreFuncion} es ${valorInterno}`;
+	nuevoParrafo.innerHTML = `El sueldo ${nombreFuncion} es ${valorInterno}`;
 	return nuevoParrafo;
 }
