@@ -17,7 +17,7 @@ document.querySelector("#eliminar-familiar").onclick = function(e) {
 
 document.querySelector("#calcular").onclick = function(e) {
 	e.preventDefault();
-	const paragraphs = document.querySelectorAll(".paragraph-element");
+	const paragraphs = document.querySelectorAll(".p-element-output-info");
 	paragraphs.forEach(element => {
 		element.remove();
 	});
@@ -132,7 +132,7 @@ function calcularSueldoMaximo(arraySueldos) {
 }
 function crearElementoParrafo(valorInterno, nombreFuncion) {
 	const nuevoParrafo = document.createElement("p");
-	nuevoParrafo.classList.add("paragraph-element", "generated-element");
+	nuevoParrafo.classList.add("p-element-output-info", "generated-element");
 	nuevoParrafo.innerHTML = `El sueldo ${nombreFuncion} es $${valorInterno}`;
 	return nuevoParrafo;
 }
