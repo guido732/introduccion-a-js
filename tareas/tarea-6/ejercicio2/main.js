@@ -6,8 +6,6 @@ Al hacer click en "calcular", mostrar en un elemento pre-existente el mayor sala
 Punto bonus: si hay inputs vacíos, ignorarlos en el cálculo (no contarlos como 0).
 */
 
-let inputCounter = 0;
-
 document.querySelector("#agregar-familiar").onclick = function(e) {
 	e.preventDefault();
 	agregarElemento();
@@ -41,31 +39,28 @@ document.querySelector("#reset").onclick = function(e) {
 	inputs.forEach(element => {
 		element.remove();
 	});
-	inputCounter = 0;
 };
 
 function agregarElemento() {
 	const newLabel = document.createElement("label");
-	newLabel.for = `Familiar ${inputCounter + 1}`;
-	newLabel.textContent = `Sueldo anual familiar ${inputCounter + 1}`;
+	newLabel.for = `Familiar ${document.querySelectorAll("input").length + 1}`;
+	newLabel.textContent = `Sueldo anual familiar ${document.querySelectorAll("input").length + 1}`;
 	newLabel.classList.add("generated-element-label", "generated-element");
 	const newInput = document.createElement("input");
-	newInput.id = `familiar-${inputCounter + 1}`;
+	newInput.id = `familiar-${document.querySelectorAll("input").length + 1}`;
 	newInput.classList.add("generated-element-input", "generated-element");
 	document.querySelector("#element-container").appendChild(newLabel);
 	document.querySelector("#element-container").appendChild(newInput);
-	inputCounter++;
 }
 
 function eliminarElemento() {
-	if (inputCounter === 0) {
+	if (document.querySelectorAll("input").length === 0) {
 		return false;
 	}
 	const inputs = document.querySelectorAll(".generated-element-input");
 	inputs[inputs.length - 1].remove();
 	const labels = document.querySelectorAll(".generated-element-label");
 	labels[labels.length - 1].remove();
-	inputCounter--;
 }
 
 function validarArray(arrayInput) {
