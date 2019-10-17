@@ -37,16 +37,8 @@ document.querySelector("#calcular").onclick = function(e) {
 
 document.querySelector("#reset").onclick = function(e) {
 	e.preventDefault();
-	const inputs = document.querySelectorAll(".generated-element-input");
+	const inputs = document.querySelectorAll(".generated-element");
 	inputs.forEach(element => {
-		element.remove();
-	});
-	const labels = document.querySelectorAll(".generated-element-label");
-	labels.forEach(element => {
-		element.remove();
-	});
-	const paragraphs = document.querySelectorAll(".paragraph-element");
-	paragraphs.forEach(element => {
 		element.remove();
 	});
 	inputCounter = 0;
@@ -56,10 +48,10 @@ function agregarElemento() {
 	const newLabel = document.createElement("label");
 	newLabel.for = `Familiar ${inputCounter + 1}`;
 	newLabel.textContent = `Sueldo anual familiar ${inputCounter + 1}`;
-	newLabel.classList.add("generated-element-label");
+	newLabel.classList.add("generated-element-label", "generated-element");
 	const newInput = document.createElement("input");
 	newInput.id = `familiar-${inputCounter + 1}`;
-	newInput.classList.add("generated-element-input");
+	newInput.classList.add("generated-element-input", "generated-element");
 	document.querySelector("#element-container").appendChild(newLabel);
 	document.querySelector("#element-container").appendChild(newInput);
 	inputCounter++;
@@ -145,7 +137,7 @@ function calcularSueldoMaximo(arraySueldos) {
 }
 function crearElementoParrafo(valorInterno, nombreFuncion) {
 	const nuevoParrafo = document.createElement("p");
-	nuevoParrafo.classList.add("paragraph-element");
+	nuevoParrafo.classList.add("paragraph-element", "generated-element");
 	nuevoParrafo.innerHTML = `El sueldo ${nombreFuncion} es $${valorInterno}`;
 	return nuevoParrafo;
 }
