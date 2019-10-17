@@ -112,7 +112,7 @@ function calcularSueldoMinimo(arraySueldos) {
 		}
 	}
 	if (sueldoMinimo < 1 || sueldoMinimo === undefined) {
-		return "Ingresá al menos un sueldo válido";
+		throw "Ingresá al menos un sueldo válido";
 	} else {
 		return sueldoMinimo.toFixed(2);
 	}
